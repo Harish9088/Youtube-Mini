@@ -1,19 +1,21 @@
 import React from 'react'
+import VideoItem from "./VideoItem"
 
 export default function VideoList({videos,videoSelect}) {
   return (
     <div className="videoList" >
        {videos.map(video=>
        {
-            return <div className="videoListItem" onClick={videoSelect}>
+            return <div className="videoListItem" >
+      <VideoItem 
+      videoSelect={videoSelect}
+      image={video.snippet.thumbnails.medium.url} 
+      id={video.id.videoId} 
+      title={video.snippet.title} 
+      channel={video.snippet.channelTitle}
       
-      <img 
-      src={video.snippet.thumbnails.medium.url} 
-      alt={video.snippet.channelTitle} 
-      id={video.id.videoId}
       />
-      <h3>{video.snippet.channelTitle}</h3>
-      <p>{video.snippet.description}</p>
+      
           </div>
        })}
 
