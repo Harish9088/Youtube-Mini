@@ -1,20 +1,14 @@
-// import Axios from 'axios'
 import React from 'react'
-import Videos from './Videos'
 
-
-function VideoItem({videos,src,videoSelect}) {
-
-
-  //  console.log(src)
-
+function VideoItem({image,title,channel,id,videoSelect}) {
   return (
-    <div>
-      
-      <iframe width="700px" height="400px" src={src.link} title={src.text}/>
-    </div>
+    <div className="videoItem" onClick={videoSelect}>
+      <img src={image} id={id} alt={channel} title={title} channel={channel} className="itemImage" />
+      <div className="itemDetails">
+      <h5 id={id} title={title} channel={channel}>{title}</h5>
+      <p id={id} title={title} channel={channel} className="itemChannel">{channel}</p>
+      </div>
+      </div>
   )
 }
-
 export default VideoItem
-// const [src,setSrc]=useState(`https://www.youtube.com/embed/${video[0]}`)
