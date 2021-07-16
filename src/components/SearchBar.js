@@ -13,7 +13,7 @@ export default function SearchBar({handleSubmit,handleChange,input,handleClick})
         name={input} 
         value={input} 
         onChange={handleChange}
-        onKeyPress={handleClick}
+        onKeyDown={handleClick}
           className="searchBar"
         />
         <button className="search-btn"><IoMdSearch className="search-icon"/>Search</button>
