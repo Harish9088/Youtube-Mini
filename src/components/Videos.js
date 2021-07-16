@@ -8,21 +8,18 @@ import VideoDetail from './VideoDetail'
 function Videos() {
     const [input,setInput]=useState("")
     const [videos,setVideos]=useState([])
-    
     const [src,setSrc]=useState({
       link:"",
       title:"",
       channel:""
     })
     const handleSubmit=async (e,input)=>{
-      
-      e.preventDefault();
+       e.preventDefault();
       const response=await Api.get('/search',{
           params:{
               q:input
           }
       })
-      // setInput(response.data)
       setVideos(response.data.items)
       console.log(response)
       setSrc({
@@ -41,8 +38,7 @@ function Videos() {
         handleSubmit()
      }
   }
-
-  const videoSelect=(e)=>{
+   const videoSelect=(e)=>{
      
      setSrc({
        link:`https://www.youtube.com/embed/${e.target.id}`,
@@ -51,19 +47,12 @@ function Videos() {
      })
   }
 
-  
-      return (
+   return (
     <>
           <SearchBar handleChange={handleChange} handleSubmit={handleSubmit} handleClick={handleClick} input={input}/>
           <VideoDetail src={src}/>
-          <VideoItem videos={videos} src={src} />  
          <VideoList videos={videos} videoSelect={videoSelect} />
 </>
-          
-
-        
-    )
+          )
 }
-
 export default Videos
-
