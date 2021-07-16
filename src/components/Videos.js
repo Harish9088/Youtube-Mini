@@ -3,6 +3,7 @@ import SearchBar from "./SearchBar"
 import VideoItem from "./VideoItem"
 import Api from "../api/youtube"
 import VideoList from "./VideoList"
+import VideoDetail from './VideoDetail'
 
 function Videos() {
     const [input,setInput]=useState("")
@@ -10,7 +11,8 @@ function Videos() {
     
     const [src,setSrc]=useState({
       link:"",
-      text:""
+      title:"",
+      channel:""
     })
     const handleSubmit=async (e,input)=>{
       
@@ -22,28 +24,38 @@ function Videos() {
       })
       // setInput(response.data)
       setVideos(response.data.items)
-      console.log(videos)
+      console.log(response)
       setSrc({
-        link:`https://www.youtube.com/embed/${videos[0].id.videoId}`,
-       text:videos[0].snippet.channelTitle
+        link:`https://www.youtube.com/embed/${response.data.items[0].id.videoId}`,
+        title:response.data.items[0].snippet.title,
+       channel:response.data.items[0].snippet.channelTitle
       })
       setInput("")
   }
   const handleChange=(e)=>{
     setInput(e.target.value)
   }
+ 
+  const handleClick=(event)=>{
+     if(event.charCode===13){
+        handleSubmit()
+     }
+  }
+
   const videoSelect=(e)=>{
      
      setSrc({
        link:`https://www.youtube.com/embed/${e.target.id}`,
-       text:e.target.alt
+       title:e.target.title,
+       channel:e.target.attributes.channel.value
      })
   }
 
   
       return (
     <>
-          <SearchBar handleChange={handleChange} handleSubmit={handleSubmit} input={input}/>
+          <SearchBar handleChange={handleChange} handleSubmit={handleSubmit} handleClick={handleClick} input={input}/>
+          <VideoDetail src={src}/>
           <VideoItem videos={videos} src={src} />  
          <VideoList videos={videos} videoSelect={videoSelect} />
 </>
@@ -54,3 +66,4 @@ function Videos() {
 }
 
 export default Videos
+
