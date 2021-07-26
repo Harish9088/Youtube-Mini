@@ -50,9 +50,11 @@ function Videos() {
    return (
     <>
           <SearchBar handleChange={handleChange} handleSubmit={handleSubmit} handleClick={handleClick} input={input}/>
-          <VideoDetail src={src}/>
+       <div className="videoContainer">   
+       <VideoDetail src={src}/>
          <VideoList videos={videos} videoSelect={videoSelect} />
-</>
+</div>
+             </>
           )
 }
 export default Videos
