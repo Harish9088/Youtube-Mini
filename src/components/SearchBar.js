@@ -5,8 +5,8 @@ export default function SearchBar({handleSubmit,handleChange,input,handleClick})
  
   
   return (
-    <div>
-      <form onSubmit={handleSubmit} >
+    <section className="form-section">
+      <form onSubmit={handleSubmit} className="form">
         <input 
         type="text" 
         placeholder="Search" 
@@ -14,10 +14,10 @@ export default function SearchBar({handleSubmit,handleChange,input,handleClick})
         value={input} 
         onChange={handleChange}
         onKeyDown={handleClick}
-          className="searchBar"
+          className="input"
         />
         <button className="search-btn"><IoMdSearch className="search-icon"/>Search</button>
       </form>
-    </div>
+    </section>
   )
 }
